@@ -1,0 +1,47 @@
+@import '~antd/dist/antd.css';
+
+body {
+     overflow:  visible;
+     background-color: #F0F2F5;
+}
+
+.header {
+     padding: 0 50px;
+    color: rgba(0,0,0,.85);
+    line-height: 64px;
+    background: #001529;
+    height: auto;
+    margin-bottom: 1rem;
+    text-align: center;
+    }
+
+.card {
+     width: 100%;
+}
+
+.ant-checkbox-wrapper.toggle {
+     padding: 0 4px;
+}
+
+.toDoIntem {
+     margin-bottom: 24px;
+}
+
+.deleteBtn {
+     float: right;
+}
+
+.filters  {
+     display: inline-flex;
+}
+
+.filters ul li { display: inline; }
+
+ul {
+     list-style-type: none;
+     padding: 0;
+}
+
+clear-completed {
+     float: right;
+}
