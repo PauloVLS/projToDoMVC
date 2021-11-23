@@ -19,12 +19,30 @@ body {
      width: 100%;
 }
 
-.ant-checkbox-wrapper.toggle {
-     padding: 0 4px;
+.ant-card-body {
+     padding: 0;
 }
 
-.toDoIntem {
+.ant-checkbox-wrapper.toggle {
+     padding: 0 8px 0 0;
+}
+
+.todo-list {
+     padding: 24px;
+     margin: 0;
+}
+
+.toDoItem {
      margin-bottom: 24px;
+}
+.editBtn {
+     margin-left: 6px;
+     color: #1890ff;
+     cursor: pointer;
+}
+
+.editing {
+     margin-bottom: 15px;
 }
 
 .deleteBtn {
@@ -42,6 +60,22 @@ ul {
      padding: 0;
 }
 
-clear-completed {
-     float: right;
+.dvdFooter {
+     margin: 0 0 12px 0;
+}
+
+.footer {
+     margin-bottom: 12px;
+}
+
+.col1, .col2, .col3 {
+     text-align: center;
+}
+
+.edit {
+     width: auto;
+}
+
+.edit .ant-input-prefix {
+     display: none;
 }

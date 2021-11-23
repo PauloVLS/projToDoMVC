@@ -4,6 +4,7 @@ import TodoTextInput from "./TodoTextInput"
 import { observer } from "mobx-react-lite"
 import { Button, Checkbox } from 'antd'
 import {
+    EditOutlined,
     DeleteOutlined
 } from '@ant-design/icons'
 
@@ -27,25 +28,38 @@ function TodoItem({ todo }) {
             })}
         >
             {editing ? (
-                <TodoTextInput
-                    text={todo.text}
-                    placeholder={todo.text}
-                    editing={editing}
-                    onSave={(text) => handleSave(todo.id, text)}
-                />
-            ) : (
                 <div className="view">
-                    
-                        <p className='toDoIntem'>
-                        <Checkbox 
+                <p className='toDoItem'>
+                    <Checkbox
                         className="toggle"
                         type="checkbox"
                         checked={todo.completed}
                         onChange={() => todo.toggle()}
                     />
-                    <label onDoubleClick={handleDoubleClick}>{todo.text}</label>
+                    <TodoTextInput
+                    className="edit"
+                    text={todo.text}
+                    placeholder={todo.text}
+                    editing={editing}
+                    onSave={(text) => handleSave(todo.id, text)}
+                />                    
                     <Button className='deleteBtn' type='danger' onClick={() => { todo.remove() }}><DeleteOutlined /></Button>
-                        </p>
+                </p>
+            </div>
+                
+            ) : (
+                <div className="view">
+                    <p className='toDoItem'>
+                        <Checkbox
+                            className="toggle"
+                            type="checkbox"
+                            checked={todo.completed}
+                            onChange={() => todo.toggle()}
+                        />
+                        <label onDoubleClick={handleDoubleClick}>{todo.text}</label>
+                        <span role="button" className='editBtn' onClick={handleDoubleClick}><EditOutlined /></span>
+                        <Button className='deleteBtn' type='danger' onClick={() => { todo.remove() }}><DeleteOutlined /></Button>
+                    </p>
                 </div>
             )}
         </li>

@@ -2,7 +2,6 @@ import React from "react"
 import { render } from "react-dom"
 import { getSnapshot, destroy, onSnapshot } from "mobx-state-tree"
 import { connectReduxDevtools } from "mst-middlewares"
-// import "todomvc-app-css/index.css"
 
 import App from "./components/App"
 import TodoStore from "./models/todos"

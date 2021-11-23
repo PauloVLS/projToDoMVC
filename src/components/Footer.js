@@ -2,9 +2,9 @@ import React from "react"
 import classnames from "classnames"
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from "../constants/TodoFilters"
 import { observer } from "mobx-react-lite"
-import { Button, Row, Col, Typography } from 'antd';
+import { Button, Row, Col, Typography, Divider } from 'antd';
 
-const { Title, Paragraph, Text, Link } = Typography;
+const { Paragraph } = Typography;
 
 
 const FILTER_TITLES = {
@@ -36,7 +36,7 @@ function Footer({ store }) {
         return (
             // eslint-disable-next-line            
             <Button
-                className={classnames({ selected: filter === selectedFilter })}
+                className={classnames("ant-btn-sm " + { selected: filter === selectedFilter })} 
                 style={{ cursor: "pointer" }}
                 onClick={() => store.setFilter(filter)}
             >
@@ -49,7 +49,7 @@ function Footer({ store }) {
         const { completedCount, clearCompleted } = store
         if (completedCount > 0) {
             return (
-                <Button className="clear-completed" onClick={() => clearCompleted()}>
+                <Button className="clear-completed ant-btn-sm" onClick={() => clearCompleted()}>
                     Clear completed
                 </Button>
             )
@@ -58,15 +58,16 @@ function Footer({ store }) {
 
     return (
         <footer className="footer">
-            <Row>
-
-                <Col className="col1" span={5}>{renderTodoCount()}</Col>
-                <Col className="col2" span={11}><ul className="filters">
+            <Divider className="dvdFooter" orientation="left"></Divider>
+            <Row justify="space-around">
+        
+                <Col className="col1" span={8}>{renderTodoCount()}</Col>
+                <Col className="col2" span={8}><ul className="filters">
                     {[SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED].map((filter) => (
                         <li key={filter}>{renderFilterLink(filter)}</li>
                     ))}
                 </ul></Col>
-                <Col className="col3" span={3}>{renderClearButton()}</Col>
+                <Col className="col3" span={8}>{renderClearButton()}</Col>
             </Row>
         </footer>
     )
