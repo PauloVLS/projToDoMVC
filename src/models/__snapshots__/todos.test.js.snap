@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`can add new items - 2 1`] = `
+Array [
+  Object {
+    "op": "add",
+    "path": "/todos/0",
+    "value": Object {
+      "completed": false,
+      "id": 0,
+      "text": "teste2",
+    },
+  },
+  Object {
+    "op": "replace",
+    "path": "/todos/0/text",
+    "value": "teste3",
+  },
+]
+`;
+
+exports[`can add new items 1`] = `
+Object {
+  "filter": "show_all",
+  "todos": Array [
+    Object {
+      "completed": false,
+      "id": 0,
+      "text": "teste3",
+    },
+  ],
+}
+`;
+
+exports[`can add new items 2`] = `
+Array [
+  Object {
+    "filter": "show_all",
+    "todos": Array [
+      Object {
+        "completed": false,
+        "id": 0,
+        "text": "teste2",
+      },
+    ],
+  },
+  Object {
+    "filter": "show_all",
+    "todos": Array [
+      Object {
+        "completed": false,
+        "id": 0,
+        "text": "teste3",
+      },
+    ],
+  },
+]
+`;

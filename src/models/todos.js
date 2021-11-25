@@ -8,7 +8,7 @@ const TODO_FILTERS = {
     [SHOW_COMPLETED]: (todo) => todo.completed
 }
 
-const Todo = types
+export const Todo = types
     .model({
         text: types.string,
         completed: false,
@@ -27,7 +27,7 @@ const Todo = types
         }
     }))
 
-const TodoStore = types
+export const TodoStore = types
     .model({
         todos: types.array(Todo),
         filter: types.optional(filterType, SHOW_ALL)
