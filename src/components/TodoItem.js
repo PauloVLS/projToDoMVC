@@ -29,24 +29,24 @@ function TodoItem({ todo }) {
         >
             {editing ? (
                 <div className="view">
-                <p className='toDoItem'>
-                    <Checkbox
-                        className="toggle"
-                        type="checkbox"
-                        checked={todo.completed}
-                        onChange={() => todo.toggle()}
-                    />
-                    <TodoTextInput
-                    className="edit"
-                    text={todo.text}
-                    placeholder={todo.text}
-                    editing={editing}
-                    onSave={(text) => handleSave(todo.id, text)}
-                />                    
-                    <Button className='deleteBtn' type='danger' onClick={() => { todo.remove() }}><DeleteOutlined /></Button>
-                </p>
-            </div>
-                
+                    <p className='toDoItem'>
+                        <Checkbox
+                            className="toggle"
+                            type="checkbox"
+                            checked={todo.completed}
+                            onChange={() => todo.toggle()}
+                        />
+                        <TodoTextInput
+                            className="edit"
+                            text={todo.text}
+                            placeholder={todo.text}
+                            editing={editing}
+                            onSave={(text) => handleSave(todo.id, text)}
+                        />
+                        <Button className='deleteBtn' type='danger' onClick={() => { todo.remove() }}><DeleteOutlined /></Button>
+                    </p>
+                </div>
+
             ) : (
                 <div className="view">
                     <p className='toDoItem'>
@@ -56,7 +56,12 @@ function TodoItem({ todo }) {
                             checked={todo.completed}
                             onChange={() => todo.toggle()}
                         />
-                        <label onDoubleClick={handleDoubleClick}>{todo.text}</label>
+                        <label onDoubleClick={handleDoubleClick}
+                            style={{
+                                textDecoration: todo.completed ? 'line-through' : 'none',
+                                color: todo.completed ? 'rgba(0,0,0,.45)' : 'rgba(0, 0, 0, 0.85)'
+                            }}
+                        >{todo.text}</label>
                         <span role="button" className='editBtn' onClick={handleDoubleClick}><EditOutlined /></span>
                         <Button className='deleteBtn' type='danger' onClick={() => { todo.remove() }}><DeleteOutlined /></Button>
                     </p>

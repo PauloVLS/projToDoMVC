@@ -34,6 +34,8 @@ body {
 
 .toDoItem {
      margin-bottom: 24px;
+     height: 32px;
+     line-height: 33px;
 }
 .editBtn {
      margin-left: 6px;
@@ -73,7 +75,7 @@ ul {
 }
 
 .edit {
-     width: auto;
+     width: 87%;
 }
 
 .edit .ant-input-prefix {
