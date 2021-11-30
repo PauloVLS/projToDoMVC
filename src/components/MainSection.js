@@ -4,6 +4,8 @@ import TodoTextInput from "./TodoTextInput"
 import Footer from "./Footer"
 import { observer } from "mobx-react-lite"
 import { Layout, Row, Col, Card } from 'antd'
+import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { useState } from "react"
 
 const { Content } = Layout
 
@@ -13,6 +15,7 @@ function MainSection({ addTodo, store }) {
         const handleSave = (text) => {
             if (text?.length !== 0) {
                 addTodo(text)
+                location.reload()
             }
         }
 
@@ -30,6 +33,20 @@ function MainSection({ addTodo, store }) {
 
     const { filteredTodos } = store
 
+    const [todoList, updateTodos] = useState(filteredTodos)
+
+    function handleOnDragEnd(result) {
+        console.log(result)
+        if (!result.destination) return;
+        const items = Array.from(todoList);
+        const [reorderedItem] = items.splice(result.source.index, 1);
+        items.splice(result.destination.index, 0, reorderedItem);
+
+        updateTodos(items);
+    }
+    
+    
+
     return (
         <Content>
             <Row justify='center'>
@@ -37,13 +54,19 @@ function MainSection({ addTodo, store }) {
                     <section className="main">
                         {addToDoItem()}
                         <Card className="card" >
-                            <ul className="todo-list">
-                                {filteredTodos.map((todo) => (
-                                    <TodoItem key={todo.id} todo={todo} />
-                                ))}
-                            </ul>
-                        
-                        {renderFooter()}
+                            <DragDropContext onDragEnd={handleOnDragEnd}>
+                                <Droppable droppableId="todo_list">
+                                    {(provided) => (
+                                        <ul className="todo_list" {...provided.droppableProps} ref={provided.innerRef}>
+                                            {todoList.map((todo, index) => (
+                                                <TodoItem key={todo.id} todo={todo} index={index} />
+                                            ))}
+                                            {provided.placeholder}
+                                        </ul>
+                                    )}
+                                </Droppable>
+                            </DragDropContext>
+                            {renderFooter()}
                         </Card>
                     </section>
                 </Col>

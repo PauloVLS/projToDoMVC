@@ -1,5 +1,6 @@
 import { types, getRoot, destroy } from "mobx-state-tree"
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from "../constants/TodoFilters"
+import { v4 as uuidv4 } from 'uuid'
 
 const filterType = types.union(...[SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE].map(types.literal))
 const TODO_FILTERS = {
@@ -12,7 +13,7 @@ export const Todo = types
     .model({
         text: types.string,
         completed: false,
-        id: types.identifierNumber
+        id: types.identifier
     })
     .actions((self) => ({
         remove() {
@@ -45,7 +46,7 @@ export const TodoStore = types
     }))
     .actions((self) => ({
         addTodo(text) {
-            const id = self.todos.reduce((maxId, todo) => Math.max(todo.id, maxId), -1) + 1
+            const id = uuidv4()
             self.todos.unshift({ id, text })
         },
         removeTodo(todo) {

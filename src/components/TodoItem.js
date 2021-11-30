@@ -7,8 +7,9 @@ import {
     EditOutlined,
     DeleteOutlined
 } from '@ant-design/icons'
+import { Draggable } from 'react-beautiful-dnd';
 
-function TodoItem({ todo }) {
+function TodoItem({ todo, index }) {
     const [editing, setEditing] = useState(false)
 
     const handleDoubleClick = () => {
@@ -20,54 +21,62 @@ function TodoItem({ todo }) {
         setEditing(false)
     }
 
-    return (
-        <li
-            className={classnames({
-                completed: todo.completed,
-                editing
-            })}
-        >
-            {editing ? (
-                <div className="view">
-                    <p className='toDoItem'>
-                        <Checkbox
-                            className="toggle"
-                            type="checkbox"
-                            checked={todo.completed}
-                            onChange={() => todo.toggle()}
-                        />
-                        <TodoTextInput
-                            className="edit"
-                            text={todo.text}
-                            placeholder={todo.text}
-                            editing={editing}
-                            onSave={(text) => handleSave(todo.id, text)}
-                        />
-                        <Button className='deleteBtn' type='danger' onClick={() => { todo.remove() }}><DeleteOutlined /></Button>
-                    </p>
-                </div>
+    const { filteredTodos } = store
 
-            ) : (
-                <div className="view">
-                    <p className='toDoItem'>
-                        <Checkbox
-                            className="toggle"
-                            type="checkbox"
-                            checked={todo.completed}
-                            onChange={() => todo.toggle()}
-                        />
-                        <label onDoubleClick={handleDoubleClick}
-                            style={{
-                                textDecoration: todo.completed ? 'line-through' : 'none',
-                                color: todo.completed ? 'rgba(0,0,0,.45)' : 'rgba(0, 0, 0, 0.85)'
-                            }}
-                        >{todo.text}</label>
-                        <span role="button" className='editBtn' onClick={handleDoubleClick}><EditOutlined /></span>
-                        <Button className='deleteBtn' type='danger' onClick={() => { todo.remove() }}><DeleteOutlined /></Button>
-                    </p>
-                </div>
+    return (
+        <Draggable key={todo.id} draggableId={todo.id} 
+        index={index} 
+        className={classnames({
+            completed: todo.completed,
+            editing
+        })}>
+            {(provided) => (
+                <li
+                {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}  
+                >
+                    {editing ? (
+                        <div className="view">
+                            <p className='toDoItem'>
+                                <Checkbox
+                                    className="toggle"
+                                    type="checkbox"
+                                    checked={todo.completed}
+                                    onChange={() => todo.toggle()}
+                                />
+                                <TodoTextInput
+                                    className="edit"
+                                    text={todo.text}
+                                    placeholder={todo.text}
+                                    editing={editing}
+                                    onSave={(text) => handleSave(todo.id, text)}
+                                />
+                                <Button className='deleteBtn' type='danger' onClick={() => { todo.remove(todo.id), location.reload() }}><DeleteOutlined /></Button>
+                            </p>
+                        </div>
+
+                    ) : (
+                        <div className="view">
+                            <p className='toDoItem'>
+                                <Checkbox
+                                    className="toggle"
+                                    type="checkbox"
+                                    checked={todo.completed}
+                                    onChange={() => todo.toggle()}
+                                />
+                                <label onDoubleClick={handleDoubleClick}
+                                    style={{
+                                        textDecoration: todo.completed ? 'line-through' : 'none',
+                                        color: todo.completed ? 'rgba(0,0,0,.45)' : 'rgba(0, 0, 0, 0.85)'
+                                    }}
+                                >{todo.text}</label>
+                                <span role="button" className='editBtn' onClick={handleDoubleClick}><EditOutlined /></span>
+                                <Button className='deleteBtn' type='danger' onClick={() => { todo.remove(todo.id), location.reload() }}><DeleteOutlined /></Button>
+                            </p>
+                        </div>
+                    )}
+                </li>
             )}
-        </li>
+        </Draggable>
     )
 }
 export default observer(TodoItem)

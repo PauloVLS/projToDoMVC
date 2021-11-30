@@ -1,7 +1,8 @@
 import React from "react"
 import { render } from "react-dom"
 import { getSnapshot, destroy, onSnapshot } from "mobx-state-tree"
-import { connectReduxDevtools } from "mst-middlewares"
+import { v4 as uuidv4 } from 'uuid'
+// import { connectReduxDevtools } from "mst-middlewares"
 
 import App from "./components/App"
 import TodoStore from "./models/todos"
@@ -11,18 +12,18 @@ const localStorageKey = "mst-todomvc-example"
 const initialState = localStorage.getItem(localStorageKey)
     ? JSON.parse(localStorage.getItem(localStorageKey))
     : {
-          todos: [
-              {
-                  text: "learn Mobx",
-                  completed: false,
-                  id: 0
-              },
-              {
-                  text: "learn MST",
-                  completed: false,
-                  id: 1
-              }
-          ]
+        //   todos: [
+        //       {
+        //           text: "learn Mobx",
+        //           completed: false,
+        //           id: uuidv4()
+        //       },
+        //       {
+        //           text: "learn MST",
+        //           completed: false,
+        //           id: uuidv4()
+        //       }
+        //   ]
       }
 
 let store
@@ -38,7 +39,7 @@ function createTodoStore(snapshot) {
     window.store = store = TodoStore.create(snapshot)
 
     // connect devtools
-    connectReduxDevtools(require("remotedev"), store)
+    // connectReduxDevtools(require("remotedev"), store)
     // connect local storage
     snapshotListenerDestroyer = onSnapshot(store, (snapshot) =>
         localStorage.setItem(localStorageKey, JSON.stringify(snapshot))

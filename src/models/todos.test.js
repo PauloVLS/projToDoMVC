@@ -1,11 +1,12 @@
 import { getSnapshot, onSnapshot, onPatch } from "mobx-state-tree";
 import { Todo, TodoStore } from "./Todos";
+import { v4 as uuidv4 } from 'uuid'
 
 it("can create  an instace of a model", () => {
     const item = Todo.create({
         text: "teste",
         completed: false,
-        id: 1
+        id: uuidv4()
     })
 
     expect(item.text).toBe("teste")
@@ -22,7 +23,7 @@ it("can create a todo list", () => {
             {
                 text: "teste",
                 completed: false,
-                id: 1
+                id: uuidv4()
             }
         ]
     })
@@ -70,12 +71,12 @@ it("can remove items", () => {
             {
                 text: "learn Mobx",
                 completed: false,
-                id: 0
+                id: uuidv4()
             },
             {
                 text: "learn MST",
                 completed: true,
-                id: 1
+                id: uuidv4()
             }
         ]
     })
@@ -91,12 +92,12 @@ it("can view and filter Todos", () => {
             {
                 text: "learn Mobx",
                 completed: false,
-                id: 0
+                id: uuidv4()
             },
             {
                 text: "learn MST",
                 completed: true,
-                id: 1
+                id: uuidv4()
             }
         ]
     })

@@ -38,7 +38,7 @@ function Footer({ store }) {
             <Button
                 className={classnames("ant-btn-sm " + { selected: filter === selectedFilter })} 
                 style={{ cursor: "pointer" }}
-                onClick={() => store.setFilter(filter)}
+                onClick={() => {store.setFilter(filter), location.reload()}}
             >
                 {title}
             </Button>
@@ -49,7 +49,7 @@ function Footer({ store }) {
         const { completedCount, clearCompleted } = store
         if (completedCount > 0) {
             return (
-                <Button className="clear-completed ant-btn-sm" onClick={() => clearCompleted()}>
+                <Button className="clear-completed ant-btn-sm" onClick={() => {clearCompleted(), location.reload()}}>
                     Clear completed
                 </Button>
             )
