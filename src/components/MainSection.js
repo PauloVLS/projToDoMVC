@@ -20,7 +20,6 @@ function MainSection({ addTodo, store }) {
         }
 
         return (
-            // Form.Item
             <TodoTextInput newTodo onSave={handleSave} rules={[{ required: true, message: 'Digite uma tarefa' }]} placeholder="What needs to be done?" />
         )
     }
@@ -36,17 +35,17 @@ function MainSection({ addTodo, store }) {
     const [todoList, updateTodos] = useState(filteredTodos)
 
     function handleOnDragEnd(result) {
-        console.log(result)
+        // console.log(result)
         if (!result.destination) return;
         const items = Array.from(todoList);
         const [reorderedItem] = items.splice(result.source.index, 1);
         items.splice(result.destination.index, 0, reorderedItem);
 
         updateTodos(items);
+        store.reorder(result.source.index, result.destination.index)
     }
     
     
-
     return (
         <Content>
             <Row justify='center'>

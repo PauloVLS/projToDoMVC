@@ -1,4 +1,4 @@
-import { types, getRoot, destroy } from "mobx-state-tree"
+import { types, getRoot, destroy, detach } from "mobx-state-tree"
 import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from "../constants/TodoFilters"
 import { v4 as uuidv4 } from 'uuid'
 
@@ -61,6 +61,10 @@ export const TodoStore = types
         },
         setFilter(filter) {
             self.filter = filter
+        },
+        reorder(from, to) {
+            const todo = detach(self.todos[from])
+            self.todos.splice(to, 0, todo)
         }
     }))
 

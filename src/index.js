@@ -1,8 +1,6 @@
 import React from "react"
 import { render } from "react-dom"
 import { getSnapshot, destroy, onSnapshot } from "mobx-state-tree"
-import { v4 as uuidv4 } from 'uuid'
-// import { connectReduxDevtools } from "mst-middlewares"
 
 import App from "./components/App"
 import TodoStore from "./models/todos"
@@ -12,18 +10,18 @@ const localStorageKey = "mst-todomvc-example"
 const initialState = localStorage.getItem(localStorageKey)
     ? JSON.parse(localStorage.getItem(localStorageKey))
     : {
-        //   todos: [
-        //       {
-        //           text: "learn Mobx",
-        //           completed: false,
-        //           id: uuidv4()
-        //       },
-        //       {
-        //           text: "learn MST",
-        //           completed: false,
-        //           id: uuidv4()
-        //       }
-        //   ]
+          /*todos: [
+              {
+                  text: "learn Mobx",
+                  completed: false,
+                  id: uuidv4()
+              },
+              {
+                  text: "learn MST",
+                  completed: false,
+                  id: uuidv4()
+              }
+          ]*/
       }
 
 let store
