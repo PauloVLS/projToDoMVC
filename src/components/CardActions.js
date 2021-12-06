@@ -38,7 +38,7 @@ function CardActions({ store }) {
             <Button
                 className={classnames("ant-btn-sm " + { selected: filter === selectedFilter })} 
                 style={{ cursor: "pointer" }}
-                onClick={() => {store.setFilter(filter), location.reload()}}
+                onClick={() => {store.setFilter(filter)}}
             >
                 {title}
             </Button>
@@ -49,7 +49,7 @@ function CardActions({ store }) {
         const { completedCount, clearCompleted } = store
         if (completedCount > 0) {
             return (
-                <Button className="clear-completed ant-btn-sm" onClick={() => {clearCompleted(), location.reload()}}>
+                <Button className="clear-completed ant-btn-sm" onClick={() => {clearCompleted()}}>
                     Clear Completed
                 </Button>
             )

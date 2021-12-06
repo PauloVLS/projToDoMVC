@@ -71,7 +71,7 @@ function TodoItem({ todo, index }) {
                                     }}
                                 >{todo.text}</label>
                                 <span role="button" className='editBtn' onClick={handleDoubleClick}><EditOutlined /></span>
-                                <Button className='deleteBtn' type='danger' onClick={() => { todo.remove(todo.id), location.reload() }}><DeleteOutlined /></Button>
+                                <Button className='deleteBtn' type='danger' onClick={() => { todo.remove(todo.id) }}><DeleteOutlined /></Button>
                             </p>
                         </div>
                     )}
