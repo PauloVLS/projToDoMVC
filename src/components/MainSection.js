@@ -1,15 +1,17 @@
 import React from "react"
+import * as classNames from 'classnames';
 import TodoItem from "./TodoItem"
 import TodoTextInput from "./TodoTextInput"
-import Footer from "./Footer"
+import CardActions from "./CardActions"
 import { observer } from "mobx-react-lite"
-import { Layout, Row, Col, Card } from 'antd'
+import { Layout, Row, Col, Card, Typography } from 'antd'
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { useState } from "react"
 
-const { Content } = Layout
+const { Content, Footer } = Layout
+const { Text, Link } = Typography
 
-function MainSection({ addTodo, store }) {
+function MainSection() {
 
     function addToDoItem() {
         const handleSave = (text) => {
@@ -20,13 +22,13 @@ function MainSection({ addTodo, store }) {
         }
 
         return (
-            <TodoTextInput newTodo onSave={handleSave} rules={[{ required: true, message: 'Digite uma tarefa' }]} placeholder="What needs to be done?" />
+            <TodoTextInput newTodo onSave={handleSave} size="large" rules={[{ required: true, message: 'Digite uma tarefa' }]} placeholder="What needs to be done?" />
         )
     }
 
-    function renderFooter(completedCount) {
+    function renderCardActions(completedCount) {
         if (store.todos.length) {
-            return <Footer store={store} />
+            return <CardActions store={store} />
         }
     }
 
@@ -44,8 +46,8 @@ function MainSection({ addTodo, store }) {
         updateTodos(items);
         store.reorder(result.source.index, result.destination.index)
     }
-    
-    
+
+
     return (
         <Content>
             <Row justify='center'>
@@ -55,8 +57,8 @@ function MainSection({ addTodo, store }) {
                         <Card className="card" >
                             <DragDropContext onDragEnd={handleOnDragEnd}>
                                 <Droppable droppableId="todo_list">
-                                    {(provided) => (
-                                        <ul className="todo_list" {...provided.droppableProps} ref={provided.innerRef}>
+                                    {(provided, snapshot) => (
+                                        <ul className={classNames('todo_list container', snapshot.isDraggingOver && 'draggingOver')} {...provided.droppableProps} ref={provided.innerRef}>
                                             {todoList.map((todo, index) => (
                                                 <TodoItem key={todo.id} todo={todo} index={index} />
                                             ))}
@@ -65,11 +67,14 @@ function MainSection({ addTodo, store }) {
                                     )}
                                 </Droppable>
                             </DragDropContext>
-                            {renderFooter()}
+                            {renderCardActions()}
                         </Card>
                     </section>
                 </Col>
             </Row>
+            <Footer className="footer">
+                <div style={{ textAlign: 'center' }}><Text type='secondary'>Made with ❤️ by Paulo Victor. Based on <Link target="_blank" href="https://looplex-todomvc.vercel.app/">TodoMVC Looplex</Link>.</Text></div>
+            </Footer>
         </Content>
     )
 }

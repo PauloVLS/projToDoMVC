@@ -15,6 +15,10 @@ body {
     text-align: center;
     }
 
+.ant-input-affix-wrapper {
+    padding: 6.5px 11px;
+}
+
 .card {
      width: 100%;
 }
@@ -28,14 +32,14 @@ body {
 }
 
 .todo_list {
-     padding: 24px;
+     padding: 16px;
      margin: 0;
 }
 
 .toDoItem {
-     margin-bottom: 24px;
+     margin: 0;
      height: 32px;
-     line-height: 33px;
+     /* line-height: 33px; */
 }
 .editBtn {
      margin-left: 6px;
@@ -55,19 +59,25 @@ body {
      display: inline-flex;
 }
 
-.filters ul li { display: inline; }
+.filters ul li { 
+     display: inline; 
+}
+
+.filters ul { 
+     margin-bottom: 0; 
+}
 
 ul {
      list-style-type: none;
      padding: 0;
 }
 
-.dvdFooter {
+.dvd_card_actions {
      margin: 0 0 12px 0;
 }
 
-.footer {
-     margin-bottom: 12px;
+.card_actions {
+     margin-bottom: -2px;
 }
 
 .col1, .col2, .col3 {
@@ -80,4 +90,23 @@ ul {
 
 .edit .ant-input-prefix {
      display: none;
+}
+
+.container.draggingOver {
+     background-color: cornsilk;
+}
+
+.item {
+     padding: 8px;
+     margin: 0;
+}
+
+.item.dragging {
+     background-color: #90EE90;
+}
+
+.footer {
+     position: fixed;
+     width: 100%;
+     bottom: 0;
 }

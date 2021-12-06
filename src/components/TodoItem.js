@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import * as classNames from 'classnames';
 import classnames from "classnames"
 import TodoTextInput from "./TodoTextInput"
 import { observer } from "mobx-react-lite"
@@ -30,9 +31,9 @@ function TodoItem({ todo, index }) {
             completed: todo.completed,
             editing
         })}>
-            {(provided) => (
+            {(provided, snapshot) => (
                 <li
-                {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}  
+                className={classNames('item', snapshot.isDragging && 'dragging')}  style={provided.draggableProps.style} {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}  
                 >
                     {editing ? (
                         <div className="view">
