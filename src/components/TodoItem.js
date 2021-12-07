@@ -51,7 +51,7 @@ function TodoItem({ todo, index }) {
                                     editing={editing}
                                     onSave={(text) => handleSave(todo.id, text)}
                                 />
-                                <Button className='deleteBtn' type='danger' onClick={() => { todo.remove(todo.id), location.reload() }}><DeleteOutlined /></Button>
+                                <Button className='deleteBtn' type='danger' onClick={() => { todo.remove(todo.id) }}><DeleteOutlined /></Button>
                             </p>
                         </div>
 

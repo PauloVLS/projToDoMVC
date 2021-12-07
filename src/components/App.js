@@ -41,7 +41,7 @@ const App = observer(({ store }) => {
         <div>
             <Header />
             <Content>
-                <Row justify='center'>
+                <Row className="row">
                     <Col span={12}>
                         <section className="main">
                             <TodoTextInput newTodo onSave={handleSave} size="large"
@@ -67,10 +67,10 @@ const App = observer(({ store }) => {
                         </section>
                     </Col>
                 </Row>
-                <Footer className="footer">
-                    <div style={{ textAlign: 'center' }}><Text type='secondary'>Made with ❤️ by Paulo Victor. Based on <Link target="_blank" href="https://looplex-todomvc.vercel.app/">TodoMVC Looplex</Link>.</Text></div>
-                </Footer>
             </Content>
+            <Footer className="footer">
+                <div style={{ textAlign: 'center' }}><Text type='secondary'>Made with ❤️ by Paulo Victor. Based on <Link target="_blank" href="https://looplex-todomvc.vercel.app/">TodoMVC Looplex</Link>.</Text></div>
+            </Footer>
         </div>
     )
 }
